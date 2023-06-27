@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'testa.apps.TestaConfig',
     'agenda',
     'rest_framework',
+    'django_filters',
 
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

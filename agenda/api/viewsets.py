@@ -36,6 +36,13 @@ class GroupViewSet(viewsets.ModelViewSet):
     #permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        usuario = self.request.user.username
-        convidado = Convidado.objects.get(usuario__username=usuario)
-        return Agenda.objects.filter(convidado=convidado)
+        desc = self.request.query_params.get('compromisso')
+        queryset  = Agenda.objects.all()
+        if desc is not None:
+            queryset = queryset.filter(compromisso=desc)
+        #usuario = self.request.user.username
+        #convidado = Convidado.objects.get(usuario__username=usuario)
+        #return Agenda.objects.filter(convidado=convidado)
+        return queryset
+
+
