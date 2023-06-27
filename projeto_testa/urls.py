@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from agenda.views import GroupViewSet, UserViewSet, ConvidadoViewSet, AgendaViewSet, LocalViewSet
+from agenda.api.viewsets import UserViewSet,ConvidadoViewSet,GroupViewSet, AgendaViewSet,LocalViewSet
+from agenda.views import lista_locais
 
 router = routers.DefaultRouter()
 router.register('users', UserViewSet)
@@ -29,5 +30,6 @@ router.register('local', LocalViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(router.urls)),
-    path('api-auth/', include('rest_framework.urls'))
+    path('api-auth/', include('rest_framework.urls')),
+    path('lista_locais/', lista_locais, name='lista_locais')
 ]
