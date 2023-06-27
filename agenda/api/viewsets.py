@@ -35,3 +35,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializers
     #permission_classes = [permissions.IsAuthenticated]
 
+    def get_queryset(self):
+        usuario = self.request.user.username
+        convidado = Convidado.objects.get(usuario__username=usuario)
+        return Agenda.objects.filter(convidado=convidado)

@@ -1,12 +1,22 @@
 from django.contrib import admin
 from agenda.models import Agenda, Local, Convidado
 
-class AgendaInLine(admin.TabularInline):
-    model = Agenda
+class ConvidadosInLine(admin.TabularInline):
+    model = Agenda.convidados.through
+
 
 class ConvidadoAdmin(admin.ModelAdmin):
-    inlines = [AgendaInLine]
+    inlines = [
+        ConvidadosInLine,
+    ]
 
-admin.site.register(Agenda)
+
+class AgendaAdmin(admin.ModelAdmin):
+    inlines = [
+        ConvidadosInLine
+    ]
+    exclude = ['convidados']
+
+admin.site.register(Agenda,AgendaAdmin)
 admin.site.register(Local)
-admin.site.register(Convidado)
+admin.site.register(Convidado,ConvidadoAdmin)

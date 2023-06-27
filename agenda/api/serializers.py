@@ -7,7 +7,7 @@ from agenda.models import Local, Convidado,Agenda
 class LocalSerializers(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Local
-        fields = ['url', 'nome', 'rua','numero']
+        fields = ['url', 'nome', 'rua','numero','foto']
 
 
 class ConvidadoSerializers(serializers.HyperlinkedModelSerializer):

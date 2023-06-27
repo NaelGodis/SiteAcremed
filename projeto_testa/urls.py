@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from rest_framework import routers
 from agenda.api.viewsets import UserViewSet,ConvidadoViewSet,GroupViewSet, AgendaViewSet,LocalViewSet
 from agenda.views import lista_locais
+
 
 router = routers.DefaultRouter()
 router.register('users', UserViewSet)
@@ -32,4 +35,5 @@ urlpatterns = [
     path('',include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
     path('lista_locais/', lista_locais, name='lista_locais')
-]
+
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
